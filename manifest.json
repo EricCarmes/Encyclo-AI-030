@@ -1,7 +1,7 @@
 {
-  "name": "Notre-Dame de Paris - Livre Audio",
-  "short_name": "Notre-Dame Audio",
-  "start_url": "index.html",
+  "name": "Smartbook - Livre Audio",
+  "short_name": "Smartbook Audio",
+  "start_url": "Smartbook.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#004080",
