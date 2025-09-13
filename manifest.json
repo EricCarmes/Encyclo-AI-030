@@ -1,8 +1,8 @@
 {
-  "id": "/Encyclo-AI-030/lecteur.html",
+  "id": "/Encyclo-AI-030/Smartbook.html",
   "name": "Smartbook - Livre Audio",
   "short_name": "Smartbook",
-  "start_url": "/Encyclo-AI-030/lecteur.html",
+  "start_url": "/Encyclo-AI-030/Smartbook.html",
   "scope": "/Encyclo-AI-030/",
   "display": "standalone",
   "background_color": "#ffffff",
