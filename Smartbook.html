@@ -46,8 +46,13 @@
     }
     .button-container {
       margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
     }
-    .button-container a {
+    .button-container a,
+    .button-container button {
       text-decoration: none;
       padding: 12px 24px;
       background-color: #004080;
@@ -55,10 +60,14 @@
       border-radius: 5px;
       font-size: 1.1em;
       transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
     }
-    .button-container a:hover {
+    .button-container a:hover,
+    .button-container button:hover {
       background-color: #0055aa;
     }
+    #installButton { display: none; }
   </style>
 </head>
 <body>
@@ -74,6 +83,7 @@
 
   <div class="button-container">
     <a href="lecteur.html">Accéder à l'écoute du livre audio</a>
+    <button id="installButton">📲 Installer cette application</button>
   </div>
 
   <!-- ✅ Enregistrement du service worker -->
@@ -85,6 +95,30 @@
           .catch(err => console.error("❌ Échec de l'enregistrement :", err));
       });
     }
+
+    // ✅ Gestion du bouton d'installation
+    let deferredPrompt;
+    const installButton = document.querySelector("#installButton");
+    installButton.style.display = "none";
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installButton.style.display = "block";
+
+      installButton.addEventListener("click", () => {
+        installButton.style.display = "none";
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("✅ Application installée");
+          } else {
+            console.log("❌ Installation refusée");
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
   </script>
 
 </body>
