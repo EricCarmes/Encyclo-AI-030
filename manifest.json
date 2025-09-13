@@ -1,7 +1,9 @@
 {
+  "id": "/Encyclo-AI-030/Smartbook.html",
   "name": "Smartbook - Livre Audio",
-  "short_name": "Smartbook Audio",
-  "start_url": "Smartbook.html",
+  "short_name": "Smartbook",
+  "start_url": "/Encyclo-AI-030/Smartbook.html",
+  "scope": "/Encyclo-AI-030/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#004080",
@@ -16,7 +18,19 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
   ]
 }
-
-

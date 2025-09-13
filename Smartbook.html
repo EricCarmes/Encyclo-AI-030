@@ -6,7 +6,7 @@
 
   <!-- ✅ PWA : ajout du manifest -->
   <link rel="manifest" href="https://ericcarmes.github.io/Encyclo-AI-030/manifest.json">
-  <link rel="icon" type="image/jpeg" href="Couverture_resized.jpg">
+  <link rel="icon" type="image/png" href="logo-icon-192.png">
 
   <style>
     body {
@@ -86,8 +86,9 @@
     <button id="installButton">📲 Installer cette application</button>
   </div>
 
-  <!-- ✅ Enregistrement du service worker -->
+  <!-- ✅ Enregistrement du service worker et gestion installation -->
   <script>
+    // Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js')
@@ -96,10 +97,9 @@
       });
     }
 
-    // ✅ Gestion du bouton d'installation
+    // Gestion du bouton Installer
     let deferredPrompt;
     const installButton = document.querySelector("#installButton");
-    installButton.style.display = "none";
 
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
@@ -111,7 +111,7 @@
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === "accepted") {
-            console.log("✅ Application installée");
+            console.log("✅ Appli installée");
           } else {
             console.log("❌ Installation refusée");
           }
@@ -119,6 +119,11 @@
         });
       });
     });
+
+    // Masquer le bouton si déjà en standalone
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      installButton.style.display = "none";
+    }
   </script>
 
 </body>
