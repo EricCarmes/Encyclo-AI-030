@@ -1,12 +1,17 @@
-const CACHE_NAME = "v1";
+const CACHE_NAME = "smartbook-v1";
 
-// ✅ Liste uniquement les fichiers qui existent réellement
 const urlsToCache = [
   "./",
-  "index.html",
-  "manifest.json",
-  "Couverture_resized.jpg"
-  // Ajoute ici d'autres fichiers UNIQUEMENT s'ils existent dans ton dépôt
+  "./Smartbook.html",
+  "./lecteur.html",
+  "./manifest.json",
+  "./logo-icon-192.png",
+  "./logo-icon-512.png",
+  "./Couverture_resized.jpg",
+  "./PLANCHE-1a.jpg",
+  "./Logo_resized.jpg",
+  "./lecteur.js",
+  "./style.css"
 ];
 
 // 📦 INSTALLATION : mise en cache initiale
@@ -14,33 +19,27 @@ self.addEventListener("install", event => {
   console.log("📦 Mise en cache initiale...");
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
-      .catch(err => {
-        console.error("❌ Échec du cache :", err);
-      })
+      .then(cache => cache.addAll(urlsToCache))
+      .catch(err => console.error("❌ Échec du cache :", err))
   );
 });
 
-// 🧹 ACTIVATION : nettoyage des anciens caches si nécessaire
+// 🧹 ACTIVATION : nettoyage des anciens caches
 self.addEventListener("activate", event => {
   console.log("⚙️ Activation du service worker...");
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(name => {
-          if (name !== CACHE_NAME) {
-            console.log("🗑️ Suppression du cache :", name);
-            return caches.delete(name);
-          }
-        })
-      );
-    })
+    caches.keys().then(keys =>
+      Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME) {
+          console.log("🗑️ Suppression de l’ancien cache :", key);
+          return caches.delete(key);
+        }
+      }))
+    )
   );
 });
 
-// 🌐 FETCH : intercepter les requêtes et répondre depuis le cache
+// 🌍 FETCH : répondre avec le cache puis fallback réseau
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
@@ -48,3 +47,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
