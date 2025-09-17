@@ -1,16 +1,16 @@
-const CACHE_NAME = "smartbook-v1";
+const CACHE_NAME = "Smartbook";
 
 const urlsToCache = [
   "./",
   "./Smartbook.html",
-  "./lecteur-DF.html",
+  "./lecteur.html",
   "./manifest.json",
   "./logo-icon-192.png",
   "./logo-icon-512.png",
   "./Couverture_resized.jpg",
   "./PLANCHE-1a.jpg",
   "./Logo_resized.jpg",
-  "./lecteur-DF.js",
+  "./lecteur.js",
   "./style.css"
 ];
 
