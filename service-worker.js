@@ -2,7 +2,6 @@ const CACHE_NAME = "Smartbook-v1";
 
 const urlsToCache = [
   "./",
-  "./index.html",          // utile si tu ouvres directement l’URL racine du repo
   "./Smartbook.html",
   "./lecteur.html",
   "./manifest.json",
@@ -15,39 +14,33 @@ const urlsToCache = [
   "./style.css"
 ];
 
-// 📦 INSTALLATION : mise en cache initiale
+// 📦 INSTALLATION
 self.addEventListener("install", (event) => {
   console.log("📦 Mise en cache initiale...");
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(urlsToCache))
+      .catch(err => console.error("Erreur cache :", err))
   );
-  self.skipWaiting(); // 👉 prend la main tout de suite
+  self.skipWaiting();
 });
 
-// 🧹 ACTIVATION : nettoyage des anciens caches
+// 🧹 ACTIVATION
 self.addEventListener("activate", (event) => {
   console.log("⚙️ Activation du service worker...");
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log("🗑️ Suppression de l’ancien cache :", key);
-            return caches.delete(key);
-          }
-        })
-      )
+      Promise.all(keys.map((key) => key !== CACHE_NAME && caches.delete(key)))
     )
   );
-  self.clients.claim(); // 👉 contrôle direct des pages ouvertes
+  self.clients.claim();
 });
 
-// 🌍 FETCH : répondre avec le cache puis fallback réseau
+// 🌍 FETCH
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Retourne la réponse du cache si dispo, sinon fait un vrai fetch
-      return response || fetch(event.request);
-    })
+    caches.match(event.request).then((response) =>
+      response || fetch(event.request)
+    )
   );
 });
