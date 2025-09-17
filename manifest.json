@@ -1,9 +1,8 @@
 {
-  "id": "/Encyclo-AI-030/Smartbook.html",
   "name": "Smartbook - Livre Audio",
   "short_name": "Smartbook",
-  "start_url": "Smartbook.html",
-  "scope": "/Encyclo-AI/",
+  "start_url": "./Smartbook.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#004080",
@@ -18,5 +17,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
+  ]
 }
+
