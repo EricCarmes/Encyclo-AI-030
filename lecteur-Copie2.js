@@ -1,14 +1,24 @@
-// ==============================
-// Initialisation Plyr
-// ==============================
+// Initialiser Plyr
 const audio = document.getElementById('audioPlayer');
+
 const player = new Plyr(audio, {
   controls: [
     'play', 'progress', 'current-time', 'duration',
-    'mute', 'volume'
+    'mute', 'volume', 'settings'
   ],
+  settings: ['speed'],                 // affiche le menu vitesse
+  speed: {
+    selected: 1,                       // démarrer en Normal
+    options: [0.9, 0.95, 1, 1.05, 1.1] // tes 5 vitesses seulement
+  },
+  i18n: {
+    speed: 'Vitesse',                  // libellé du menu
+    normal: 'Normal'                   // libellé de l’option 1x
+  },
+  // (optionnel) éviter que d’anciennes préférences réapparaissent
   storage: { enabled: false }
 });
+
 
 // ==============================
 // Gestion de la playlist
@@ -28,7 +38,7 @@ function playTrack(index) {
 
   // Marquer la piste active
   const link = links[index];
-  link.classList.add('active');            // rouge gras via CSS
+  link.classList.add('active');
   link.setAttribute('aria-current', 'true');
 
   // Charger la source dans Plyr
@@ -91,10 +101,10 @@ const bigPlayBtn = document.getElementById('bigPlayBtn');
 bigPlayBtn.addEventListener('click', () => {
   if (player.playing) {
     player.pause();
-    bigPlayBtn.textContent = '▶';
+    bigPlayBtn.textContent = '▶'; // Play
   } else {
     player.play();
-    bigPlayBtn.textContent = '❚❚';
+    bigPlayBtn.textContent = '❚❚'; // Pause
   }
 });
 
@@ -104,28 +114,3 @@ player.on('play', () => {
 player.on('pause', () => {
   bigPlayBtn.textContent = '▶';
 });
-
-// ==============================
-// POTENTIOMÈTRE VITESSE (vertical)
-// ==============================
-const speedKnob = document.getElementById('speedKnob');
-const speedValue = document.getElementById('speedValue');
-
-if (speedKnob) {
-  speedKnob.addEventListener('input', () => {
-    const val = parseFloat(speedKnob.value);
-    player.speed = val;
-
-    // Remplacer valeurs numériques par symboles
-    let label;
-    switch (val.toFixed(2)) {
-      case "0.90": label = "--"; break;
-      case "0.95": label = "-"; break;
-      case "1.00": label = "="; break;
-      case "1.05": label = "+"; break;
-      case "1.10": label = "++"; break;
-      default: label = val.toFixed(2) + "x";
-    }
-    speedValue.textContent = label;
-  });
-}

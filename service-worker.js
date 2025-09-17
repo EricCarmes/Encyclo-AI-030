@@ -3,14 +3,14 @@ const CACHE_NAME = "smartbook-v1";
 const urlsToCache = [
   "./",
   "./Smartbook.html",
-  "./lecteur.html",
+  "./lecteur-DF.html",
   "./manifest.json",
   "./logo-icon-192.png",
   "./logo-icon-512.png",
   "./Couverture_resized.jpg",
   "./PLANCHE-1a.jpg",
   "./Logo_resized.jpg",
-  "./lecteur.js",
+  "./lecteur-DF.js",
   "./style.css"
 ];
 

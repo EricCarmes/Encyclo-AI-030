@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Smartbook - AudioBook</title>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-Copie2.css">
 </head>
 <body>
   <img src="Couverture_resized.jpg" alt="Couverture" style="width: 20%; height: auto; margin-bottom: 20px;">
@@ -14,99 +14,91 @@
     <img src="Logo_resized.jpg" alt="Logo Encyclo-AI" style="width: 10%; height: auto; margin-bottom: 20px;">
   </div>
 
-<!-- Bloc bouton Play + potentiomètre vitesse -->
-<div class="player-controls">
   <!-- Gros bouton Play -->
   <button id="bigPlayBtn" aria-label="Lire ou mettre en pause le livre audio">▶</button>
 
-  <!-- Bloc vitesse -->
-  <div id="speedControl">
-    <div class="speed-label">Vitesse</div>
-    <div class="speed-knob-wrapper">
-      <input type="range" id="speedKnob" min="0.9" max="1.1" step="0.05" value="1" orient="vertical">
-
-      <!-- Colonne repères alignés -->
-      <div id="speedLabels">
-        <span>++</span>
-        <span>+</span>
-        <span>=</span>
-        <span>-</span>
-        <span>--</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!-- Lecteur audio -->
   <audio id="audioPlayer" controls></audio>
-
-  <!-- Playlist -->
+ 
   <ul id="playlist">
-    <li><a href="Introduction.mp3" style="font-weight: bold;">INTRODUCTION - L'ÉCLAT INTEMPOREL DE VERMEER</a></li>
 
-    <li style="font-weight: bold;">Chapitre 1 - LA VIE ET L'ENFANCE DE JOHANNES VERMEER</li>
+    <!-- ✅ Introduction : lien cliquable en gras -->
+    <li style="margin-top: 15px;"><a href="Introduction.mp3" style="font-weight: bold;">INTRODUCTION - L'ÉCLAT INTEMPOREL DE VERMEER</a></li>
+
+    <!-- Chapitre 1 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 1 - LA VIE ET L'ENFANCE DE JOHANNES VERMEER</li>
     <ul>
       <li><a href="Chapitre1-1.mp3">1.1 - Les origines familiales et la jeunesse à Delft</a></li>
       <li><a href="Chapitre1-2.mp3">1.2 - Formation artistique et influences initiales</a></li>
       <li><a href="Chapitre1-3.mp3">1.3 - Mariage et vie familiale</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 2 - LE CONTEXTE HISTORIQUE DE L'ÂGE D'OR NÉERLANDAIS</li>
+    <!-- Chapitre 2 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 2 - LE CONTEXTE HISTORIQUE DE L'ÂGE D'OR NÉERLANDAIS</li>
     <ul>
       <li><a href="Chapitre2-1.mp3">2.1 - La prospérité économique et culturelle des Pays-Bas</a></li>
       <li><a href="Chapitre2-2.mp3">2.2 - Les tensions politiques et religieuses</a></li>
       <li><a href="Chapitre2-3.mp3">2.3 - L'impact des guildes et des mécènes</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 3 - TECHNIQUES ARTISTIQUES DE VERMEER</li>
+    <!-- Chapitre 3 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 3 - TECHNIQUES ARTISTIQUES DE VERMEER</li>
     <ul>
       <li><a href="Chapitre3-1.mp3">3.1 - L'utilisation du clair-obscur</a></li>
       <li><a href="Chapitre3-2.mp3">3.2 - La précision des détails et des textures</a></li>
       <li><a href="Chapitre3-3.mp3">3.3 - L'usage de la perspective et des compositions</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 4 - ANALYSE DES ŒUVRES MAJEURES</li>
+    <!-- Chapitre 4 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 4 - ANALYSE DES ŒUVRES MAJEURES</li>
     <ul>
       <li><a href="Chapitre4-1.mp3">4.1 - La Jeune Fille à la Perle</a></li>
       <li><a href="Chapitre4-2.mp3">4.2 - Vue de Delft</a></li>
       <li><a href="Chapitre4-3.mp3">4.3 - L'Art de la Peinture</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 5 - LA VIE QUOTIDIENNE ET LES THÈMES DANS L'ART DE VERMEER</li>
+    <!-- Chapitre 5 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 5 - LA VIE QUOTIDIENNE ET LES THÈMES DANS L'ART DE VERMEER</li>
     <ul>
       <li><a href="Chapitre5-1.mp3">5.1 - Les scènes domestiques</a></li>
       <li><a href="Chapitre5-2.mp3">5.2 - Le rôle des femmes dans ses œuvres</a></li>
       <li><a href="Chapitre5-3.mp3">5.3 - Les symboles et significations cachées</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 6 - L'INFLUENCE DE VERMEER DANS L'ART CONTEMPORAIN</li>
+    <!-- Chapitre 6 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 6 - L'INFLUENCE DE VERMEER DANS L'ART CONTEMPORAIN</li>
     <ul>
       <li><a href="Chapitre6-1.mp3">6.1 - Les artistes influencés par Vermeer</a></li>
       <li><a href="Chapitre6-2.mp3">6.2 - Vermeer au cinéma et dans la littérature</a></li>
       <li><a href="Chapitre6-3.mp3">6.3 - Les expositions et leur rôle dans la redécouverte</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 7 - REDÉCOUVERTE ET RÉHABILITATION DE VERMEER AU XIXE SIÈCLE</li>
+    <!-- Chapitre 7 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 7 - REDÉCOUVERTE ET RÉHABILITATION DE VERMEER AU XIXE SIÈCLE</li>
     <ul>
       <li><a href="Chapitre7-1.mp3">7.1 - L'oubli et la redécouverte</a></li>
       <li><a href="Chapitre7-2.mp3">7.2 - L'impact des critiques d'art</a></li>
       <li><a href="Chapitre7-3.mp3">7.3 - Les premières expositions dédiées</a></li>
     </ul>
 
-    <li style="font-weight: bold;">Chapitre 8 - L'HÉRITAGE DURABLE DE VERMEER</li>
+    <!-- Chapitre 8 -->
+    <li style="font-weight: bold; margin-top: 15px;">Chapitre 8 - L'HÉRITAGE DURABLE DE VERMEER</li>
     <ul>
       <li><a href="Chapitre8-1.mp3">8.1 - L'impact sur les arts visuels</a></li>
       <li><a href="Chapitre8-2.mp3">8.2 - L'influence sur la culture populaire</a></li>
       <li><a href="Chapitre8-3.mp3">8.3 - Les recherches et études actuelles</a></li>
     </ul>
 
-    <li><a href="Conclusion.mp3" style="font-weight: bold;">CONCLUSION - L'HÉRITAGE ÉTERNEL DE VERMEER</a></li>
+<!-- ✅ Conclusion : lien cliquable en gras -->
+    <li style="margin-top: 15px;"><a href="Conclusion.mp3" style="font-weight: bold;">CONCLUSION - L'HÉRITAGE ÉTERNEL DE VERMEER</a></li>
+
+    <li style="list-style: none; margin-top: 10px; border-top: 1px solid #aaa; margin-bottom: 5px;"></li>
   </ul>
 
   <p><a href="Annexes.pdf" target="_blank">📄 Consulter les annexes du livre</a></p>
   <p><a href="mentions_legales.pdf">Mentions légales</a></p>
 
   <script src="https://cdn.plyr.io/3.7.2/plyr.polyfilled.js"></script>
-  <script src="lecteur.js"></script>
+  <script src="lecteur-Copie2.js"></script>
 </body>
 </html>
+
