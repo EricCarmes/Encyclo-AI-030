@@ -14,6 +14,9 @@ const ASSETS_TO_CACHE = [
   "./Logo_resized.jpg",
   "./lecteur.js",
   "./style.css",
+  "./plyr.css",
+  "./plyr.polyfilled.js",
+
 
   // 🎧 Toutes les pistes audio (à compléter avec les tiennes)
   "./Introduction.mp3",
