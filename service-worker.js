@@ -1,4 +1,4 @@
-const CACHE_NAME = "Smartbook-v4";
+const CACHE_NAME = "Smartbook-v5";
 
 // Fichiers statiques + tous les MP3
 const ASSETS_TO_CACHE = [
@@ -17,8 +17,7 @@ const ASSETS_TO_CACHE = [
   "./plyr.css",
   "./plyr.polyfilled.js",
 
-
-  // 🎧 Toutes les pistes audio (à compléter avec les tiennes)
+  // 🎧 Toutes les pistes audio
   "./Introduction.mp3",
   "./Chapitre1-1.mp3",
   "./Chapitre1-2.mp3",
@@ -46,14 +45,14 @@ const ASSETS_TO_CACHE = [
   "./Chapitre8-3.mp3",
   "./Conclusion.mp3",
 
-  // PDF annexes
+  // 📄 Annexes PDF
   "./Annexes.pdf",
   "./mentions_legales.pdf"
 ];
 
-// 📦 INSTALLATION : tout mettre en cache
+// 📦 INSTALLATION : mise en cache initiale
 self.addEventListener("install", (event) => {
-  console.log("📦 Mise en cache initiale de tous les fichiers…");
+  console.log("📦 Mise en cache initiale…");
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS_TO_CACHE);
@@ -62,7 +61,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// 🧹 ACTIVATION : nettoyer les anciens caches
+// 🧹 ACTIVATION : nettoyage anciens caches
 self.addEventListener("activate", (event) => {
   console.log("⚙️ Activation du service worker…");
   event.waitUntil(
@@ -73,11 +72,31 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// 🌍 FETCH : cache d’abord, sinon réseau
+// 🌍 FETCH : cache-first avec gestion spéciale des Range requests
 self.addEventListener("fetch", (event) => {
+  const req = event.request;
+
+  // ⚡ Firefox : laisser passer les requêtes Range (audio/vidéo)
+  if (req.headers.get("range")) {
+    event.respondWith(fetch(req));
+    return;
+  }
+
+  // Stratégie cache-first
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then((cached) => {
-      return cached || fetch(event.request);
+    caches.match(req, { ignoreSearch: true }).then((cached) => {
+      if (cached) return cached;
+
+      return fetch(req).then((response) => {
+        // Optionnel : mettre en cache les nouvelles ressources
+        if (response && response.status === 200 && response.type === "basic") {
+          const respClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(req, respClone);
+          });
+        }
+        return response;
+      });
     })
   );
 });
