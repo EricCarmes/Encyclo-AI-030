@@ -1,4 +1,4 @@
-📖 Notre-Dame : AudioBook
+﻿AudioBook
 
 Instructions :
 1. Ouvrez le fichier "index.html" dans votre navigateur.
@@ -6,3 +6,4 @@ Instructions :
 3. Vous pouvez aussi ouvrir directement les fichiers .mp3 dans votre lecteur audio préféré.
 
 Utilisable même hors connexion.
+
